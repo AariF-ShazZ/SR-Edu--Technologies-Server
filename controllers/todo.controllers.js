@@ -29,7 +29,8 @@ const changeStatus = async (req, res) => {
     }
     task.completed = !task.completed; 
     await task.save(); 
-    res.status(201).json({ success: true, data: task });
+    const tasks = await TaskModel.find();
+    res.status(200).json({ success: true, data: tasks });
   } catch (err) {
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
